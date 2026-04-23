@@ -78,7 +78,7 @@ export function Navbar() {
             Contacto
           </a>
         </nav>
-
+        {/**
         <div className="flex items-center gap-2">
           <a
             href={whatsappUrl}
@@ -97,6 +97,7 @@ export function Navbar() {
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
+         */}
       </div>
 
       {open && (
