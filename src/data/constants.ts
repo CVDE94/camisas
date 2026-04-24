@@ -21,7 +21,7 @@ export interface Product {
 }
 
 export const BRAND = {
-  name: "IRON WEAR",
+  name: "ASCNT",
   tagline: "Forjado para el esfuerzo",
   whatsappNumber: "5215555555555",
   instagramUrl: "https://instagram.com/",
@@ -158,7 +158,10 @@ export const GALLERY_IMAGES = [
 ];
 
 export const HERO_IMAGE =
-  "https://images.pexels.com/photos/1552103/pexels-photo-1552103.jpeg?auto=compress&cs=tinysrgb&w=1920";
+  "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776957493/ChatGPT_Image_23_abr_2026_09_17_23_a.m._bu8xfy.png";
+
+export const LOGO_IMAGE =
+  "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776957264/logo_wibgto.svg";
 
 export const COLOR_LABEL: Record<ProductColor, string> = {
   black: "Negro",

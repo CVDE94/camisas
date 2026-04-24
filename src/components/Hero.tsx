@@ -36,7 +36,7 @@ export function Hero() {
         <img
           src={HERO_IMAGE}
           alt="Entrenamiento de gym"
-          className="w-full h-full object-cover object-center scale-105"
+          className="w-full h-full object-contain object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-ink-950/70 via-ink-950/60 to-ink-950" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink-950/80 via-transparent to-transparent" />

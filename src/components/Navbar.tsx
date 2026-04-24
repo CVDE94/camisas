@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { MessageCircle, Menu, X, Dumbbell } from "lucide-react";
-import { BRAND } from "../data/constants";
+import { MessageCircle, Menu, X } from "lucide-react";
+import { BRAND, LOGO_IMAGE } from "../data/constants";
 import { buildGeneralMessage, buildWhatsAppUrl } from "../lib/whatsapp";
 
 // ==========================================
@@ -50,9 +50,13 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2 group">
-          <Dumbbell className="w-6 h-6 text-metal-100 group-hover:rotate-12 transition-transform" />
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+        <a href="#" className="flex items-center gap-2 group">
+          <img
+            src={LOGO_IMAGE}
+            alt=""
+            className="w-14 h-14 sm:w-10 sm:h-10 object-contain object-center transition-transform duration-300 group-hover:scale-110"
+          />
           <span className="font-display tracking-widest text-xl text-metallic">
             {BRAND.name}
           </span>
