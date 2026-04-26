@@ -1,10 +1,9 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-oxc'; // <-- Cambiamos la importación aquí
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-oxc"; // Asegúrate de que diga -oxc
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    exclude: ['lucide-react'],
+    exclude: ["lucide-react"],
   },
 });
