@@ -23,7 +23,7 @@ export interface Product {
 export const BRAND = {
   name: "ASCNT",
   tagline: "Forjado para el esfuerzo",
-  whatsappNumber: "5215555555555",
+  whatsappNumber: "5213334665465",
   instagramUrl: "https://instagram.com/",
   email: "hola@ironwear.mx",
   currency: "MXN",
