@@ -81,7 +81,7 @@ export const PRODUCTS: Product[] = [
     name: "Gojo",
     description:
       "Detalles reflejantes que destacan en cualquier entrenamiento nocturno.",
-    basePrice: 549,
+    basePrice: 600,
     hasReflective: true,
     reflectiveExtra: REFLECTIVE_EXTRA,
     images: {
