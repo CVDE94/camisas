@@ -1,0 +1,24 @@
+
+export const AscntIcon = ({className ="", animated=false}:{className?: string, animated?:boolean}) =>
+{
+    return (
+    <svg version="1.1" fill="none" viewBox="0 0 205 153" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <style>
+            {
+                  
+            }
+      </style>
+
+      <defs id="defs1">
+                  <mask id="Logo-Mask"    mask-type="luminance" maskUnits="userSpaceOnUse">
+                        <rect x="0" y="0" width="204.5" height="153" fill="white" stroke-width="0" opacity="1" id="rect1" />   
+                        <path id="A-cut" d="M 151.3,125 m-46,-21 l24.5,37.5" stroke="black" stroke-width="5" />
+                  </mask>
+      </defs>
+
+      <g id="Logo" fill="none" stroke-opacity="1" stroke-width="20" stroke="white" stroke-linejoin="miter" mask="url(#Logo-Mask)" >
+                  <path id="Triangle"  d="M 55,179.5 m-46,-21 l 92.5,-140 95,140.5" />
+                  <path id="Main-A"    d="M 95,179.5 m-46,-21 l 53,-82.5 l 54,83 m -82,-31.5 h 55" />
+      </g>
+</svg>)
+}
