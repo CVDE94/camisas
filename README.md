@@ -1,4 +1,4 @@
-# 👕 Proyecto de Camisas - E-commerce Landing Page
+# 👕 Proyecto de Camisas - Landing Page
 
 Este es un proyecto de **Landing Page y Catálogo Dinámico** diseñado para una marca de ropa deportiva. La aplicación permite a los usuarios visualizar diseños exclusivos, personalizar sus opciones (color, corte, detalles reflejantes) y realizar pedidos directos a través de **WhatsApp**.
 
