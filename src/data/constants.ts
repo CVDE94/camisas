@@ -158,7 +158,7 @@ export const GALLERY_IMAGES = [
 ];
 
 export const HERO_IMAGE =
-  "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776957493/ChatGPT_Image_23_abr_2026_09_17_23_a.m._bu8xfy.png";
+  "https://res.cloudinary.com/dogmbd7ub/image/upload/v1777343880/42a5692e-a9e7-4438-a677-869682733a8d_z0j6vo.png";
 
 export const LOGO_IMAGE =
   "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776957264/logo_wibgto.svg";
