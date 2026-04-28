@@ -172,3 +172,27 @@ export const CUT_LABEL: Record<ProductCut, string> = {
   normal: "Normal",
   oversize: "Oversize",
 };
+
+export const PROMO_OFFERS = [
+  {
+    id: 1,
+    image:
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776436521/galery_00_cmklew.png",
+    title: "DROP DE TEMPORADA",
+    description:
+      "Aprovecha un 20% de descuento en todas las playeras oversize.",
+    badge: "OFERTA -20%",
+    link: "#catalogo",
+  },
+  {
+    id: 2,
+    image:
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776436520/fondo_00_lklfya.png",
+    title: "PACK DE ENTRENAMIENTO",
+    description:
+      "Lleva 3 playeras técnicas por el precio de 2. Edición limitada.",
+    badge: "3x2 PROMO",
+    link: "#catalogo",
+  },
+  // Puedes agregar cuantas ofertas quieras aquí...
+];
