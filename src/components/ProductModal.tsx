@@ -9,6 +9,7 @@ import {
   type ProductCut,
 } from "../data/constants";
 import { buildOrderMessage, buildWhatsAppUrl } from "../lib/whatsapp";
+import { ProductCarousel } from "./ProductCarousel";
 
 // ==========================================
 // SECCIÓN: Ventana Emergente del Producto (ProductModal)
@@ -74,11 +75,20 @@ export function ProductModal({ product, onClose }: Props) {
     return product.basePrice + (reflective ? product.reflectiveExtra : 0);
   }, [product, reflective]);
 
-  const image = useMemo(() => {
-    if (!product) return "";
-    return product.images[color] ?? product.images.default;
-  }, [product, color]);
+  const carouselImages = useMemo(() => {
+    if (!product) return [];
 
+    // Si la camisa tiene una galería específica, úsala.
+    // Si no, agrupa la imagen principal y las variantes de color.
+    const images = new Set([
+      product.images[color] ?? product.images.default, // Primero la del color seleccionado
+      product.images.default, // Luego la foto por defecto
+      ...Object.values(product.images), // Y el resto de variantes
+    ]);
+
+    // Convertimos el Set (que elimina duplicados) de nuevo a una lista
+    return Array.from(images).filter(Boolean) as string[];
+  }, [product, color]);
   if (!product) return null;
 
   const whatsappUrl = buildWhatsAppUrl(
@@ -106,13 +116,11 @@ export function ProductModal({ product, onClose }: Props) {
           </button>
 
           <div className="grid md:grid-cols-2">
-            <div className="relative bg-ink-800 aspect-square md:aspect-auto md:min-h-[560px]">
-              <img
-                key={image}
-                src={image}
-                alt={`${product.name} color ${COLOR_LABEL[color]}`}
-                className="absolute inset-0 w-full h-full object-cover animate-fade-in"
-              />
+            <div className="relative bg-black aspect-square md:aspect-auto md:min-h-[560px]">
+              {/* Área izquierda de la ventana: Carrusel de Fotos   bg-green-900*/}
+              <div className="w-full md:w-full relative min-h-[500px] md:min-h-[600px] shrink-0 bg-black rounded-t-2xl md:rounded-tr-none md:rounded-l-2xl overflow-hidden">
+                <ProductCarousel images={carouselImages} />
+              </div>
               {reflective && (
                 <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 text-xs bg-white/10 backdrop-blur-md border border-white/15 text-white px-3 py-1.5 rounded-full">
                   <Sparkles className="w-3.5 h-3.5" />
