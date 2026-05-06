@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Check, MessageCircle, X, Sparkles } from "lucide-react";
+import { MessageCircle, X, Sparkles } from "lucide-react";
 import {
   COLOR_LABEL,
   CURRENCY_FORMATTER,
@@ -46,8 +46,19 @@ interface Props {
 
 export function ProductModal({ product, onClose }: Props) {
   const [color, setColor] = useState<ProductColor>("black");
-  const [cut, setCut] = useState<ProductCut>("normal");
+  const [cut, setCut] = useState<ProductCut>("S");
   const [reflective, setReflective] = useState(false);
+  // 1. NUEVO ESTADO: Controla el destello inicial
+  const [attention, setAttention] = useState(false);
+
+  // 2. NUEVO EFECTO: Enciende el destello al abrir un producto y lo apaga 1.5 segundos después
+  useEffect(() => {
+    if (product?.hasReflective) {
+      setAttention(true);
+      const timer = setTimeout(() => setAttention(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [product]);
 
   useEffect(() => {
     if (product) {
@@ -131,7 +142,7 @@ export function ProductModal({ product, onClose }: Props) {
 
             <div className="p-6 sm:p-8 md:p-10 flex flex-col">
               <span className="text-[11px] tracking-[0.3em] uppercase text-metal-400">
-                {product.tag ?? "Playera técnica"}
+                {product.tag ?? "Playera"}
               </span>
               <h3 className="mt-2 font-display text-4xl sm:text-5xl leading-none text-white">
                 {product.name}
@@ -144,9 +155,7 @@ export function ProductModal({ product, onClose }: Props) {
                 <span className="font-display text-4xl text-metallic">
                   {CURRENCY_FORMATTER.format(price)}
                 </span>
-                <span className="text-xs text-metal-400">
-                  MXN · envío no incluido
-                </span>
+                <span className="text-xs text-metal-400">MXN</span>
               </div>
 
               <div className="mt-7 space-y-6">
@@ -154,19 +163,17 @@ export function ProductModal({ product, onClose }: Props) {
                   <label className="text-[11px] tracking-widest uppercase text-metal-300">
                     Color
                   </label>
-                  <div className="mt-2 flex gap-2">
+                  <div className="mt-2 flex gap-2 flex-wrap">
                     {product.variants.colors.map((c) => {
-                      const active = color === c;
+                      // Eliminamos la constante 'active' ya que no la necesitamos
                       return (
-                        <button
+                        <div
                           key={c}
-                          onClick={() => setColor(c)}
-                          className={`flex items-center gap-2 px-4 py-2.5 rounded-full border text-sm transition-all ${
-                            active
-                              ? "border-white bg-white text-ink-950 font-semibold"
-                              : "border-white/15 text-metal-200 hover:border-white/40"
-                          }`}
+                          // Dejamos las clases fijas: borde sutil (border-white/15) y texto gris claro (text-metal-200).
+                          // Al no poner ningún "bg-...", el fondo se mantiene totalmente transparente.
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/15 text-sm text-metal-200"
                         >
+                          {/**
                           <span
                             className={`w-3.5 h-3.5 rounded-full border ${
                               c === "black"
@@ -174,8 +181,9 @@ export function ProductModal({ product, onClose }: Props) {
                                 : "bg-white border-black/30"
                             }`}
                           />
+                           */}
                           {COLOR_LABEL[c]}
-                        </button>
+                        </div>
                       );
                     })}
                   </div>
@@ -183,22 +191,29 @@ export function ProductModal({ product, onClose }: Props) {
 
                 <div>
                   <label className="text-[11px] tracking-widest uppercase text-metal-300">
-                    Corte
+                    Talla
                   </label>
-                  <div className="mt-2 grid grid-cols-2 gap-2">
+                  {/* Cambiamos grid por flex y le damos el ancho total (w-full) */}
+                  <div className="mt-2 flex w-full gap-1.5 sm:gap-2">
                     {product.variants.cuts.map((k) => {
                       const active = cut === k;
                       return (
                         <button
                           key={k}
                           onClick={() => setCut(k)}
-                          className={`px-4 py-2.5 rounded-xl border text-sm transition-all ${
+                          // 1. Agregamos "flex-1" para que todos midan lo mismo en 1 sola línea
+                          // 2. Reducimos el padding a py-1.5 para hacerlos menos altos
+                          // 3. Cambiamos text-sm a text-xs (para celular) y sm:text-sm (para computadora)
+                          className={`flex-1 flex items-center justify-center py-1.5 rounded-lg border text-xs sm:text-sm transition-all ${
                             active
                               ? "border-white bg-white/10 text-white font-semibold"
                               : "border-white/10 text-metal-200 hover:border-white/30"
                           }`}
                         >
-                          {CUT_LABEL[k]}
+                          {/* Eliminamos el min-w-[40px] porque flex-1 ya se encarga de la uniformidad */}
+                          <span className="text-center truncate">
+                            {CUT_LABEL[k]}
+                          </span>
                         </button>
                       );
                     })}
@@ -206,30 +221,28 @@ export function ProductModal({ product, onClose }: Props) {
                 </div>
 
                 {product.hasReflective && (
-                  <label className="flex items-start gap-3 p-3.5 rounded-xl border border-white/10 bg-ink-800/60 cursor-pointer hover:border-white/25 transition-colors">
-                    <span
-                      className={`mt-0.5 w-5 h-5 rounded-md flex items-center justify-center border transition-colors ${
-                        reflective
-                          ? "bg-white border-white text-ink-950"
-                          : "border-white/30 text-transparent"
-                      }`}
-                    >
-                      <Check className="w-3.5 h-3.5" strokeWidth={3} />
-                    </span>
-                    <input
-                      type="checkbox"
-                      checked={reflective}
-                      onChange={(e) => setReflective(e.target.checked)}
-                      className="sr-only"
-                    />
+                  <label
+                    onClick={() => setReflective(!reflective)}
+                    // Agregamos transition-all duration-700 para que el regreso a la normalidad sea súper suave y elegante
+                    className={`flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all duration-700 ${
+                      attention
+                        ? "scale-105 border-white bg-white/20 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                        : reflective
+                          ? "scale-100 border-white bg-white/10 shadow-[0_0_10px_rgba(255,255,255,0.1)]"
+                          : "scale-100 border-white/10 bg-ink-800/60 hover:border-white/25 hover:bg-ink-800"
+                    }`}
+                  >
                     <span className="flex-1">
                       <span className="flex items-center gap-2 text-sm text-white font-medium">
-                        <Sparkles className="w-3.5 h-3.5 text-metal-200" />
+                        {/* El ícono también reacciona: se vuelve más grande y blanco puro durante el destello */}
+                        <Sparkles
+                          className={`transition-all duration-700 ${
+                            attention
+                              ? "w-5 h-5 text-white animate-pulse"
+                              : "w-4 h-4 text-metal-200"
+                          }`}
+                        />
                         Detalles reflejantes
-                      </span>
-                      <span className="block text-xs text-metal-400 mt-0.5">
-                        +{CURRENCY_FORMATTER.format(product.reflectiveExtra)} ·
-                        Resalta en fotos y entrenamientos nocturnos
                       </span>
                     </span>
                   </label>

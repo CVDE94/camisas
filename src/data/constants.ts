@@ -1,5 +1,5 @@
-export type ProductColor = "black" | "white";
-export type ProductCut = "normal" | "oversize";
+export type ProductColor = "black" | "white" | "green" | "blue" | "red";
+export type ProductCut = "S" | "M" | "L" | "XL" | "XXL";
 
 export interface Product {
   id: string;
@@ -10,9 +10,7 @@ export interface Product {
   reflectiveExtra: number;
   images: {
     default: string;
-    black: string;
-    white: string;
-  };
+  } & Partial<Record<ProductColor, string>>;
   variants: {
     colors: ProductColor[];
     cuts: ProductCut[];
@@ -35,7 +33,7 @@ export const CURRENCY_FORMATTER = new Intl.NumberFormat("es-MX", {
   maximumFractionDigits: 0,
 });
 
-export const REFLECTIVE_EXTRA = 80;
+export const REFLECTIVE_EXTRA = 90;
 
 export const PRODUCTS: Product[] = [
   {
@@ -43,7 +41,7 @@ export const PRODUCTS: Product[] = [
     name: "Vegeta",
     description:
       "Tela transpirable con corte atlético. Pensada para movimiento intenso.",
-    basePrice: 499,
+    basePrice: 320,
     hasReflective: true,
     reflectiveExtra: REFLECTIVE_EXTRA,
     images: {
@@ -54,7 +52,10 @@ export const PRODUCTS: Product[] = [
       white:
         "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890076/vegeta_front_uttvui.jpg",
     },
-    variants: { colors: ["black", "white"], cuts: ["normal", "oversize"] },
+    variants: {
+      colors: ["black", "white", "green", "blue"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
     tag: "Top ventas",
   },
   {
@@ -62,7 +63,7 @@ export const PRODUCTS: Product[] = [
     name: "Toji Fujimon",
     description:
       "Silueta amplia, caída perfecta y costuras reforzadas para hipertrofia.",
-    basePrice: 599,
+    basePrice: 320,
     hasReflective: true,
     reflectiveExtra: REFLECTIVE_EXTRA,
     images: {
@@ -73,7 +74,10 @@ export const PRODUCTS: Product[] = [
       white:
         "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890076/tojimon_front_bdoeha.jpg",
     },
-    variants: { colors: ["black", "white"], cuts: ["normal", "oversize"] },
+    variants: {
+      colors: ["black", "white", "green", "blue"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
     tag: "Nuevo",
   },
   {
@@ -81,7 +85,7 @@ export const PRODUCTS: Product[] = [
     name: "Gojo",
     description:
       "Detalles reflejantes que destacan en cualquier entrenamiento nocturno.",
-    basePrice: 600,
+    basePrice: 320,
     hasReflective: true,
     reflectiveExtra: REFLECTIVE_EXTRA,
     images: {
@@ -92,13 +96,16 @@ export const PRODUCTS: Product[] = [
       white:
         "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890074/gojo_front_qwx6ts.jpg",
     },
-    variants: { colors: ["black", "white"], cuts: ["normal", "oversize"] },
+    variants: {
+      colors: ["black", "white", "green", "blue"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
   },
   {
     id: "beast-mode",
     name: "Majin Boo",
     description: "Ajuste performance con mezcla premium de algodón y elastano.",
-    basePrice: 479,
+    basePrice: 320,
     hasReflective: false,
     reflectiveExtra: 0,
     images: {
@@ -109,13 +116,16 @@ export const PRODUCTS: Product[] = [
       white:
         "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890074/majin_front_oowobi.jpg",
     },
-    variants: { colors: ["black", "white"], cuts: ["normal", "oversize"] },
+    variants: {
+      colors: ["black", "white", "green", "blue"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
   },
   {
     id: "steel-athlete",
     name: "Goku",
     description: "Diseño minimalista con acabado metálico en logo frontal.",
-    basePrice: 529,
+    basePrice: 320,
     hasReflective: true,
     reflectiveExtra: REFLECTIVE_EXTRA,
     images: {
@@ -126,13 +136,16 @@ export const PRODUCTS: Product[] = [
       white:
         "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890074/goku_front_mar0zk.jpg",
     },
-    variants: { colors: ["black", "white"], cuts: ["normal", "oversize"] },
+    variants: {
+      colors: ["black", "white", "green", "blue"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
   },
   {
     id: "shadow-pump",
     name: "Tji",
     description: "Mangas cortadas estratégicamente, ideal para días de brazo.",
-    basePrice: 459,
+    basePrice: 320,
     hasReflective: false,
     reflectiveExtra: 0,
     images: {
@@ -143,7 +156,10 @@ export const PRODUCTS: Product[] = [
       white:
         "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890075/tojicol_front_h3x26w.jpg",
     },
-    variants: { colors: ["black", "white"], cuts: ["normal", "oversize"] },
+    variants: {
+      colors: ["black", "white", "green", "blue"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
     tag: "Limitado",
   },
 ];
@@ -166,11 +182,17 @@ export const LOGO_IMAGE =
 export const COLOR_LABEL: Record<ProductColor, string> = {
   black: "Negro",
   white: "Blanco",
+  green: "Verde",
+  blue: "Azul",
+  red: "Red",
 };
 
 export const CUT_LABEL: Record<ProductCut, string> = {
-  normal: "Normal",
-  oversize: "Oversize",
+  S: "S",
+  M: "M",
+  L: "L",
+  XL: "XL",
+  XXL: "XXL",
 };
 
 export const PROMO_OFFERS = [

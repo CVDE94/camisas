@@ -46,7 +46,7 @@ export function ProductCarousel({ images }: Props) {
         <img
           src={images[currentIndex]}
           alt="Vista principal"
-          className="w-full h-full object-contain transition-opacity duration-300"
+          className="w-full h-full object-cover transition-opacity duration-300"
         />
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-black/20"></div>
       </div>
