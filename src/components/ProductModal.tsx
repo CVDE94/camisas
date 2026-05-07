@@ -1,5 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
-import { MessageCircle, X, Sparkles } from "lucide-react";
+import {
+  MessageCircle,
+  X,
+  Sparkles,
+  Heart,
+  Lock,
+  Wind,
+  Droplets,
+  Star,
+} from "lucide-react";
 import {
   COLOR_LABEL,
   CURRENCY_FORMATTER,
@@ -11,34 +20,6 @@ import {
 import { buildOrderMessage, buildWhatsAppUrl } from "../lib/whatsapp";
 import { ProductCarousel } from "./ProductCarousel";
 
-// ==========================================
-// SECCIÓN: Ventana Emergente del Producto (ProductModal)
-// ==========================================
-// ¿Qué hace este componente?
-// Muestra los detalles de una camisa en una ventana sobrepuesta y
-// permite al usuario configurar su pedido antes de enviarlo por WhatsApp.
-//
-// Lógica principal (Hooks de React):
-// 1. useState: Guarda en la memoria temporal qué color, corte y opción
-//    reflejante ha elegido el cliente actualmente.
-// 2. useEffect: Hace dos cosas importantes:
-//    - Cuando abres la ventana, resetea las opciones a las predeterminadas.
-//    - Bloquea el "scroll" de la página de fondo para que no se mueva,
-//      y permite cerrar la ventana presionando la tecla "Escape".
-// 3. useMemo: Hace cálculos rápidos. Recalcula el precio final si activas
-//    lo reflejante, y cambia la variable de la imagen según el color elegido.
-//
-// Estructura visual:
-// 1. Fondo (Overlay): Una capa oscura y borrosa (bg-black/80 backdrop-blur-sm)
-//    que cubre toda la pantalla.
-// 2. Contenedor Principal: En celulares es una sola columna, pero en
-//    computadoras se divide en 2 columnas (grid md:grid-cols-2).
-// 3. Columna Izquierda: Muestra la foto de la camisa.
-// 4. Columna Derecha: Muestra el título, precio dinámico, botones para
-//    seleccionar color/corte (con estilos distintos si están activos),
-//    el checkbox de reflejante y el botón verde de WhatsApp.
-// ==========================================
-
 interface Props {
   product: Product | null;
   onClose: () => void;
@@ -48,10 +29,8 @@ export function ProductModal({ product, onClose }: Props) {
   const [color, setColor] = useState<ProductColor>("black");
   const [cut, setCut] = useState<ProductCut>("S");
   const [reflective, setReflective] = useState(false);
-  // 1. NUEVO ESTADO: Controla el destello inicial
   const [attention, setAttention] = useState(false);
 
-  // 2. NUEVO EFECTO: Enciende el destello al abrir un producto y lo apaga 1.5 segundos después
   useEffect(() => {
     if (product?.hasReflective) {
       setAttention(true);
@@ -88,18 +67,14 @@ export function ProductModal({ product, onClose }: Props) {
 
   const carouselImages = useMemo(() => {
     if (!product) return [];
-
-    // Si la camisa tiene una galería específica, úsala.
-    // Si no, agrupa la imagen principal y las variantes de color.
     const images = new Set([
-      product.images[color] ?? product.images.default, // Primero la del color seleccionado
-      product.images.default, // Luego la foto por defecto
-      ...Object.values(product.images), // Y el resto de variantes
+      product.images[color] ?? product.images.default,
+      product.images.default,
+      ...Object.values(product.images),
     ]);
-
-    // Convertimos el Set (que elimina duplicados) de nuevo a una lista
     return Array.from(images).filter(Boolean) as string[];
   }, [product, color]);
+
   if (!product) return null;
 
   const whatsappUrl = buildWhatsAppUrl(
@@ -108,7 +83,7 @@ export function ProductModal({ product, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-50 animate-fade-in"
+      className="fixed inset-0 z-50 animate-fade-in flex items-center justify-center p-0 sm:p-6"
       role="dialog"
       aria-modal="true"
     >
@@ -116,151 +91,184 @@ export function ProductModal({ product, onClose }: Props) {
         className="absolute inset-0 bg-black/80 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative h-full overflow-y-auto flex items-start sm:items-center justify-center p-0 sm:p-6">
-        <div className="relative w-full sm:max-w-5xl bg-ink-900 sm:rounded-2xl border border-white/10 overflow-hidden animate-scale-in shadow-2xl shadow-black">
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-ink-950/80 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-ink-950 transition-colors"
-            aria-label="Cerrar"
-          >
-            <X className="w-5 h-5" />
-          </button>
 
-          <div className="grid md:grid-cols-2">
-            <div className="relative bg-black aspect-square md:aspect-auto md:min-h-[560px]">
-              {/* Área izquierda de la ventana: Carrusel de Fotos   bg-green-900*/}
-              <div className="w-full md:w-full relative min-h-[500px] md:min-h-[600px] shrink-0 bg-black rounded-t-2xl md:rounded-tr-none md:rounded-l-2xl overflow-hidden">
-                <ProductCarousel images={carouselImages} />
-              </div>
-              {reflective && (
-                <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 text-xs bg-white/10 backdrop-blur-md border border-white/15 text-white px-3 py-1.5 rounded-full">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  Detalles reflejantes
+      {/* Contenedor Principal: Limita el alto máximo y permite overflow redondeado */}
+      <div className="relative w-full max-w-[1050px] h-full sm:h-auto sm:max-h-[90vh] bg-[#0a0a0a] sm:rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden animate-scale-in">
+        {/* Grid Superior: Imagen (50%) + Info (50%) */}
+        <div className="flex flex-col md:flex-row flex-1 overflow-y-auto">
+          {/* LADO IZQUIERDO: Imagen. Anclada de forma absoluta para evitar colapsos */}
+          <div className="w-full md:w-1/2 relative bg-black min-h-[450px] md:min-h-[600px] shrink-0">
+            <div className="absolute inset-0">
+              <ProductCarousel images={carouselImages} />
+              {/* BARRA INFERIOR: Características */}
+              <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 p-5 sm:px-10 border-t border-white/5 bg-[#050505] shrink-0">
+                <div className="flex items-center gap-3 justify-center sm:justify-start">
+                  <Wind className="w-6 h-6 text-zinc-500 shrink-0" />
+                  <div className="text-left">
+                    <p className="text-zinc-200 text-sm font-semibold">
+                      Tela premium
+                    </p>
+                    <p className="text-zinc-500 text-xs">
+                      Cómoda y transpirable
+                    </p>
+                  </div>
                 </div>
-              )}
+                <div className="flex items-center gap-3 justify-center sm:justify-start">
+                  <Droplets className="w-6 h-6 text-zinc-500 shrink-0" />
+                  <div className="text-left">
+                    <p className="text-zinc-200 text-sm font-semibold">
+                      Secado rápido
+                    </p>
+                    <p className="text-zinc-500 text-xs">Mantente fresco</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 justify-center sm:justify-start">
+                  <Star className="w-6 h-6 text-zinc-500 shrink-0" />
+                  <div className="text-left">
+                    <p className="text-zinc-200 text-sm font-semibold">
+                      Diseño exclusivo
+                    </p>
+                    <p className="text-zinc-500 text-xs">Ediciones limitadas</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* LADO DERECHO: Detalles */}
+          <div className="w-full md:w-1/2 p-6 sm:p-10 flex flex-col bg-[#0a0a0a] relative">
+            {/* Botones Flotantes (Cerrar y Favorito) */}
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-2.5 z-20">
+              <button className="w-9 h-9 rounded-full bg-black/40 sm:bg-transparent border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/5 transition-all">
+                <Heart className="w-4 h-4" />
+              </button>
+              <button
+                onClick={onClose}
+                className="w-9 h-9 rounded-full bg-black/40 sm:bg-transparent border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/5 transition-all"
+              >
+                <X className="w-4 h-4" />
+              </button>
             </div>
 
-            <div className="p-6 sm:p-8 md:p-10 flex flex-col">
-              <span className="text-[11px] tracking-[0.3em] uppercase text-metal-400">
+            {/* Categoría y Título */}
+            <div className="mt-2 sm:mt-0 mb-6">
+              <p className="text-zinc-500 text-[11px] font-bold tracking-[0.2em] uppercase mb-2">
                 {product.tag ?? "Playera"}
-              </span>
-              <h3 className="mt-2 font-display text-4xl sm:text-5xl leading-none text-white">
+              </p>
+              <h2 className="text-4xl sm:text-[2.75rem] font-black text-white uppercase tracking-tight mb-4 leading-none">
                 {product.name}
-              </h3>
-              <p className="mt-3 text-sm text-metal-300 leading-relaxed">
+              </h2>
+              <p className="text-zinc-400 text-sm leading-relaxed">
                 {product.description}
               </p>
+            </div>
 
-              <div className="mt-6 flex items-baseline gap-2">
-                <span className="font-display text-4xl text-metallic">
-                  {CURRENCY_FORMATTER.format(price)}
-                </span>
-                <span className="text-xs text-metal-400">MXN</span>
-              </div>
+            {/* Precio */}
+            <div className="flex items-baseline gap-1.5 mb-8">
+              <span className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                {CURRENCY_FORMATTER.format(price)}
+              </span>
+              <span className="text-zinc-500 text-xs font-bold uppercase ml-1">
+                MXN
+              </span>
+            </div>
 
-              <div className="mt-7 space-y-6">
-                <div>
-                  <label className="text-[11px] tracking-widest uppercase text-metal-300">
-                    Color
-                  </label>
-                  <div className="mt-2 flex gap-2 flex-wrap">
-                    {product.variants.colors.map((c) => {
-                      // Eliminamos la constante 'active' ya que no la necesitamos
-                      return (
-                        <div
-                          key={c}
-                          // Dejamos las clases fijas: borde sutil (border-white/15) y texto gris claro (text-metal-200).
-                          // Al no poner ningún "bg-...", el fondo se mantiene totalmente transparente.
-                          className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/15 text-sm text-metal-200"
-                        >
-                          {/**
-                          <span
-                            className={`w-3.5 h-3.5 rounded-full border ${
-                              c === "black"
-                                ? "bg-black border-white/30"
-                                : "bg-white border-black/30"
-                            }`}
-                          />
-                           */}
-                          {COLOR_LABEL[c]}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-[11px] tracking-widest uppercase text-metal-300">
-                    Talla
-                  </label>
-                  {/* Cambiamos grid por flex y le damos el ancho total (w-full) */}
-                  <div className="mt-2 flex w-full gap-1.5 sm:gap-2">
-                    {product.variants.cuts.map((k) => {
-                      const active = cut === k;
-                      return (
-                        <button
-                          key={k}
-                          onClick={() => setCut(k)}
-                          // 1. Agregamos "flex-1" para que todos midan lo mismo en 1 sola línea
-                          // 2. Reducimos el padding a py-1.5 para hacerlos menos altos
-                          // 3. Cambiamos text-sm a text-xs (para celular) y sm:text-sm (para computadora)
-                          className={`flex-1 flex items-center justify-center py-1.5 rounded-lg border text-xs sm:text-sm transition-all ${
-                            active
-                              ? "border-white bg-white/10 text-white font-semibold"
-                              : "border-white/10 text-metal-200 hover:border-white/30"
-                          }`}
-                        >
-                          {/* Eliminamos el min-w-[40px] porque flex-1 ya se encarga de la uniformidad */}
-                          <span className="text-center truncate">
-                            {CUT_LABEL[k]}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {product.hasReflective && (
-                  <label
-                    onClick={() => setReflective(!reflective)}
-                    // Agregamos transition-all duration-700 para que el regreso a la normalidad sea súper suave y elegante
-                    className={`flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all duration-700 ${
-                      attention
-                        ? "scale-105 border-white bg-white/20 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-                        : reflective
-                          ? "scale-100 border-white bg-white/10 shadow-[0_0_10px_rgba(255,255,255,0.1)]"
-                          : "scale-100 border-white/10 bg-ink-800/60 hover:border-white/25 hover:bg-ink-800"
+            {/* Selector de Color */}
+            <div className="mb-6">
+              <p className="text-zinc-500 text-[10px] font-bold tracking-widest mb-3 uppercase">
+                Color
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                {product.variants.colors.map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => setColor(c)}
+                    className={`flex items-center gap-2.5 px-4 py-2 rounded-xl border text-sm font-medium transition-all ${
+                      color === c
+                        ? "border-white bg-transparent text-white"
+                        : "border-white/10 bg-transparent text-zinc-400 hover:border-white/30"
                     }`}
                   >
-                    <span className="flex-1">
-                      <span className="flex items-center gap-2 text-sm text-white font-medium">
-                        {/* El ícono también reacciona: se vuelve más grande y blanco puro durante el destello */}
-                        <Sparkles
-                          className={`transition-all duration-700 ${
-                            attention
-                              ? "w-5 h-5 text-white animate-pulse"
-                              : "w-4 h-4 text-metal-200"
-                          }`}
-                        />
-                        Detalles reflejantes
-                      </span>
-                    </span>
-                  </label>
-                )}
+                    <span
+                      className={`w-3.5 h-3.5 rounded-full border ${
+                        c === "black"
+                          ? "bg-black border-white/20"
+                          : "bg-white border-black/20"
+                      }`}
+                    />
+                    {COLOR_LABEL[c]}
+                  </button>
+                ))}
               </div>
+            </div>
 
+            {/* Selector de Talla */}
+            <div className="mb-8">
+              <p className="text-zinc-500 text-[10px] font-bold tracking-widest mb-3 uppercase">
+                Talla
+              </p>
+              <div className="flex gap-2">
+                {product.variants.cuts.map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => setCut(s)}
+                    className={`flex-1 py-2.5 rounded-lg border text-sm font-semibold transition-all ${
+                      cut === s
+                        ? "border-white bg-white/10 text-white"
+                        : "border-white/5 bg-[#121212] text-zinc-400 hover:border-white/20 hover:bg-white/5"
+                    }`}
+                  >
+                    {CUT_LABEL[s]}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Caja de Detalles Reflejantes */}
+            {product.hasReflective && (
+              <div
+                onClick={() => setReflective(!reflective)}
+                className={`mb-8 flex items-start gap-3 p-4 rounded-xl cursor-pointer transition-all border ${
+                  attention
+                    ? "bg-white/10 border-white"
+                    : reflective
+                      ? "bg-white/10 border-white/30"
+                      : "bg-[#121212] border-white/5 hover:border-white/20"
+                }`}
+              >
+                <Sparkles
+                  className={`w-5 h-5 shrink-0 mt-0.5 transition-colors ${reflective || attention ? "text-white" : "text-zinc-400"}`}
+                />
+                <div>
+                  <p
+                    className={`text-sm font-semibold mb-1 transition-colors ${reflective || attention ? "text-white" : "text-zinc-300"}`}
+                  >
+                    Detalles reflejantes
+                  </p>
+                  <p className="text-zinc-500 text-xs leading-relaxed">
+                    Mayor visibilidad en entrenamientos nocturnos.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Botón WhatsApp */}
+            <div className="mt-auto pt-2">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1fba57] text-white px-6 py-4 rounded-full font-semibold transition-all hover:-translate-y-0.5 shadow-xl shadow-black/50"
+                className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1db954] text-white font-bold text-base px-6 py-4 rounded-xl transition-transform hover:scale-[1.02]"
               >
                 <MessageCircle className="w-5 h-5" />
                 Pedir por WhatsApp
               </a>
-              <p className="mt-3 text-center text-[11px] text-metal-400">
-                Te contactamos para confirmar talla y envío.
-              </p>
+              <div className="mt-4 flex items-center justify-center gap-1.5 text-zinc-500">
+                <Lock className="w-3.5 h-3.5" />
+                <p className="text-xs">
+                  Te contactamos para confirmar talla y envío.
+                </p>
+              </div>
             </div>
           </div>
         </div>
