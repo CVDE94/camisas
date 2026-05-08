@@ -97,7 +97,7 @@ export function ProductModal({ product, onClose }: Props) {
         {/* Grid Superior: Imagen (50%) + Info (50%) */}
         <div className="flex flex-col md:flex-row flex-1 overflow-y-auto">
           {/* LADO IZQUIERDO: Imagen. Anclada de forma absoluta para evitar colapsos */}
-          <div className="w-full md:w-1/2 relative bg-black min-h-[450px] md:min-h-[600px] shrink-0">
+          <div className="w-full md:w-7/12 relative bg-black min-h-[450px] md:min-h-[600px] shrink-0">
             <div className="absolute inset-0">
               <ProductCarousel images={carouselImages} />
               {/* BARRA INFERIOR: Características */}
