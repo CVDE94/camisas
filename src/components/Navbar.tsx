@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MessageCircle, Menu, X } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { BRAND, LOGO_IMAGE } from "../data/constants";
 import { buildGeneralMessage, buildWhatsAppUrl } from "../lib/whatsapp";
 
@@ -56,26 +56,6 @@ export function Navbar() {
             Contacto
           </a>
         </nav>
-        {/**
-        <div className="flex items-center gap-2">
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 bg-white text-ink-950 px-4 py-2 rounded-full text-sm font-semibold hover:bg-metal-100 transition-all hover:-translate-y-0.5 shadow-lg shadow-black/40"
-          >
-            <MessageCircle className="w-4 h-4" />
-            WhatsApp
-          </a>
-          <button
-            onClick={() => setOpen((v) => !v)}
-            className="md:hidden p-2 text-white"
-            aria-label="Abrir menu"
-          >
-            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-         */}
       </div>
 
       {open && (
