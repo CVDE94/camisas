@@ -1,25 +1,5 @@
 import { BRAND } from "../data/constants";
 
-// ==========================================
-// SECCIÓN: Acerca de Nosotros (About)
-// ==========================================
-// ¿Qué hace este componente?
-// Muestra el bloque oscuro de presentación de la marca en la página.
-//
-// Estructura visual:
-// 1. Contenedor principal: Es una sección oscura (bg-ink-900) con bastante
-//    espacio arriba y abajo para que respire el diseño (py-20 sm:py-28).
-// 2. Caja de contenido: Todo el texto está agrupado en el centro, con un ancho
-//    límite para que no se vea estirado en pantallas de computadora.
-//
-// Elementos de texto:
-// - Etiqueta pequeña: Dice "NUESTRA HISTORIA" en letras chiquitas y separadas.
-// - Título principal: "Hecho por atletas, para atletas". Su tamaño se adapta
-//   automáticamente si lo ves en celular o en monitor.
-// - Párrafo: Explica la visión de la marca insertando el nombre dinámicamente
-//   con la variable {BRAND.name}.
-// ==========================================
-
 export function About() {
   return (
     <section

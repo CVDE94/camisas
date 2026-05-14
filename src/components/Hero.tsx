@@ -2,28 +2,6 @@ import { ArrowDown, MessageCircle } from "lucide-react";
 import { BRAND, HERO_IMAGE } from "../data/constants";
 import { buildGeneralMessage, buildWhatsAppUrl } from "../lib/whatsapp";
 
-// ==========================================
-// SECCIÓN: Hero (Pantalla Principal de Inicio)
-// ==========================================
-// ¿Qué hace este componente?
-// Es el primer pantallazo que ve el usuario. Su objetivo es impactar
-// visualmente y convencer al cliente de ver el catálogo o mandar mensaje.
-//
-// Estructura visual:
-// 1. Contenedor principal: Usa 'min-h-[100svh]' para asegurarse de que
-//    ocupe exactamente el 100% de la altura de la pantalla del dispositivo.
-// 2. Fondo (Background): Tiene una imagen de fondo (HERO_IMAGE) y encima
-//    le pone dos "capas" de pintura oscura (bg-gradient) para que el texto
-//    blanco se pueda leer perfectamente sin perderse entre los colores de la foto.
-// 3. Contenido (Z-10): Todo el texto está "elevado" por encima del fondo.
-//    - Título gigante: "Entrena como titán".
-//    - Botones: Uno te baja automáticamente a la sección del catálogo y el
-//      otro abre WhatsApp.
-//    - Estadísticas: Muestra 3 datos rápidos (+2K atletas, 6 diseños, etc.).
-// 4. Indicador de bajada: Un pequeño botón animado hasta abajo (animate-bounce)
-//    que le indica al usuario que debe "deslizar" para ver más.
-// ==========================================
-
 export function Hero() {
   const whatsappUrl = buildWhatsAppUrl(buildGeneralMessage());
 

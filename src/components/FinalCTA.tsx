@@ -1,28 +1,6 @@
 import { MessageCircle } from "lucide-react";
 import { buildGeneralMessage, buildWhatsAppUrl } from "../lib/whatsapp";
 
-// ==========================================
-// SECCIÓN: Llamado a la Acción Final (Contacto)
-// ==========================================
-// ¿Qué hace este componente?
-// Es el bloque de cierre de tu página. Su único objetivo es persuadir
-// al usuario para que haga clic en el botón y te envíe un WhatsApp.
-//
-// Lógica principal:
-// Antes de dibujar el diseño, el componente calcula dinámicamente el
-// enlace de WhatsApp (whatsappUrl) usando las herramientas que importaste
-// en la parte superior. Así, si un día cambias tu número, se actualiza solo.
-//
-// Estructura visual:
-// 1. Contenedor principal: Ocupa bastante espacio vertical (py-24 sm:py-32).
-// 2. Fondos superpuestos:
-//    - El primer <div> crea un fondo difuminado (gradiente) que va de oscuro a negro.
-//    - El segundo <div> inyecta dos "focos de luz" circulares (radial-gradient)
-//      muy sutiles para darle textura y un toque elegante.
-// 3. Contenido: El título, el párrafo y un botón blanco muy llamativo que
-//    tiene un efecto de sombra y elevación cuando le pasas el mouse por encima.
-// ==========================================
-
 export function FinalCTA() {
   const whatsappUrl = buildWhatsAppUrl(buildGeneralMessage());
 

@@ -1,29 +1,6 @@
 import { PRODUCTS, type Product } from "../data/constants";
 import { ProductCard } from "./ProductCard";
 
-// ==========================================
-// SECCIÓN: Catálogo de Productos
-// ==========================================
-// ¿Qué hace este componente?
-// Muestra la galería principal donde los clientes pueden ver todas las
-// camisas disponibles en el drop actual.
-//
-// ¿Qué es la "interface Props"?
-// Es una regla estricta que dice que este componente necesita recibir
-// una función llamada "onOpenProduct". Esto sirve para que, cuando el
-// usuario haga clic en una camisa, el sistema sepa qué producto abrir.
-//
-// Estructura visual:
-// 1. Contenedor principal: Una sección con un fondo casi negro (bg-ink-950)
-//    y un identificador (id="catalogo") para que el menú de navegación
-//    pueda saltar directamente aquí.
-// 2. Encabezado (Flexbox): El título y el párrafo de descripción están
-//    agrupados. En celulares se ponen uno debajo del otro (flex-col), pero
-//    en monitores se alinean lado a lado (sm:flex-row).
-// 3. Cuadrícula (Grid): Dibuja las tarjetas de los productos. Pone 2
-//    productos por fila en celulares, 3 en tablets y 4 en pantallas grandes.
-// ==========================================
-
 interface Props {
   onOpenProduct: (p: Product) => void;
 }

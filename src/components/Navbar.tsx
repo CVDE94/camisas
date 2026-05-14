@@ -3,32 +3,6 @@ import { MessageCircle, Menu, X } from "lucide-react";
 import { BRAND, LOGO_IMAGE } from "../data/constants";
 import { buildGeneralMessage, buildWhatsAppUrl } from "../lib/whatsapp";
 
-// ==========================================
-// SECCIÓN: Barra de Navegación (Navbar)
-// ==========================================
-// ¿Qué hace este componente?
-// Es el menú superior de tu tienda. Se queda fijo (pegado) en la pantalla
-// mientras el cliente baja a ver tus camisas.
-//
-// Lógica principal:
-// 1. Estado 'scrolled': Usa 'useEffect' para "escuchar" si el usuario ha
-//    bajado más de 16 píxeles. Si es así, el menú pasa de ser transparente
-//    a tener un fondo oscuro para que las letras se sigan leyendo.
-// 2. Estado 'open': Controla si el menú desplegable para celulares está
-//    abierto (true) o cerrado (false).
-//
-// Estructura visual:
-// 1. Contenedor principal (<header>): Usa 'fixed top-0' para anclarse arriba.
-// 2. Logo: Tiene tu icono (Dumbbell) que hace un pequeño giro animado
-//    cuando le pasas el mouse por encima.
-// 3. Enlaces de Escritorio: Los botones de "Diseños", "Nosotros", etc., que
-//    solo se muestran en pantallas medianas y grandes (hidden md:flex).
-// 4. Botones de acción: Un botón de WhatsApp y el icono de Menú (Hamburguesa/X)
-//    que solo aparece en celulares.
-// 5. Menú Móvil: Una lista que aparece debajo cuando tocas la hamburguesa,
-//    con todos los enlaces listos para pantallas pequeñas.
-// ==========================================
-
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
