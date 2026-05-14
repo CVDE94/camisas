@@ -46,7 +46,7 @@ export function Hero() {
         <div className="max-w-2xl animate-slide-up">
           <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs tracking-[0.2em] text-metal-200 uppercase mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-metallic bg-metal-200" />
-            Drop 01 — {BRAND.tagline}
+            {BRAND.tagline}
           </span>
           <h1 className="font-display text-6xl sm:text-7xl md:text-8xl leading-[0.9] tracking-tight">
             <span className="block text-white">Entrena</span>

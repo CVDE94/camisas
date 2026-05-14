@@ -1,5 +1,5 @@
 import { Dumbbell, Instagram } from "lucide-react";
-import { BRAND } from "../data/constants";
+import { BRAND, LOGO_IMAGE } from "../data/constants";
 
 // ==========================================
 // SECCIÓN: Pie de Página (Footer)
@@ -26,10 +26,11 @@ export function Footer() {
     <footer className="bg-black border-t border-white/5 py-10">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
-          <Dumbbell className="w-5 h-5 text-metal-200" />
-          <span className="font-display tracking-widest text-metallic">
-            {BRAND.name}
-          </span>
+          <img
+            src={LOGO_IMAGE}
+            alt=""
+            className="w-14 h-14 sm:w-10 sm:h-10 object-contain object-center transition-transform duration-300 group-hover:scale-110"
+          />
         </div>
 
         <div className="flex items-center gap-4">

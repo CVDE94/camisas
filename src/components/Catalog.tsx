@@ -35,7 +35,7 @@ export function Catalog({ onOpenProduct }: Props) {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-14">
           <div>
             <span className="text-[11px] tracking-[0.3em] uppercase text-metal-400">
-              Catálogo — Drop 01
+              Catálogo
             </span>
             <h2 className="mt-3 font-display text-4xl sm:text-5xl md:text-6xl text-white leading-none">
               Diseños <span className="text-metallic">forjados</span>

@@ -62,7 +62,6 @@ export function ProductCard({ product, onOpen }: Props) {
           <h3 className="font-semibold text-white text-sm sm:text-base">
             {product.name}
           </h3>
-          <p className="text-xs text-metal-400 mt-0.5">Desde</p>
         </div>
         <div className="text-right">
           <div className="font-display text-xl text-metallic leading-none">
