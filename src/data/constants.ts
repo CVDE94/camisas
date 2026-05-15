@@ -1,4 +1,4 @@
-export type ProductColor = "black" | "white" | "green" | "blue" | "red";
+export type ProductColor = "black" | "white" | "green" | "blue" | "beige";
 export type ProductCut = "S" | "M" | "L" | "XL" | "XXL";
 
 export interface Product {
@@ -8,9 +8,7 @@ export interface Product {
   basePrice: number;
   hasReflective: boolean;
   reflectiveExtra: number;
-  images: {
-    default: string;
-  } & Partial<Record<ProductColor, string>>;
+  images: string[];
   variants: {
     colors: ProductColor[];
     cuts: ProductCut[];
@@ -37,130 +35,197 @@ export const REFLECTIVE_EXTRA = 90;
 
 export const PRODUCTS: Product[] = [
   {
-    id: "iron-core",
-    name: "Vegeta",
-    description:
-      "Tela transpirable con corte atlético. Pensada para movimiento intenso.",
-    basePrice: 320,
-    hasReflective: true,
-    reflectiveExtra: REFLECTIVE_EXTRA,
-    images: {
-      default:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890076/vegeta_ref_fqny2v.jpg",
-      black:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890076/vegeta_nor_haxixs.jpg",
-      white:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890076/vegeta_front_uttvui.jpg",
-    },
-    variants: {
-      colors: ["black", "white", "green", "blue"],
-      cuts: ["S", "M", "L", "XL", "XXL"],
-    },
-    tag: "Top ventas",
-  },
-  {
-    id: "titan-oversize",
-    name: "Toji Fujimon",
-    description:
-      "Silueta amplia, caída perfecta y costuras reforzadas para hipertrofia.",
-    basePrice: 320,
-    hasReflective: true,
-    reflectiveExtra: REFLECTIVE_EXTRA,
-    images: {
-      default:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890076/tojimon_nor_msmzvz.jpg",
-      black:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890076/tojimon_ref_zc98ir.jpg",
-      white:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890076/tojimon_front_bdoeha.jpg",
-    },
-    variants: {
-      colors: ["black", "white", "green", "blue"],
-      cuts: ["S", "M", "L", "XL", "XXL"],
-    },
-    tag: "Nuevo",
-  },
-  {
-    id: "forge-reflect",
-    name: "Gojo",
-    description:
-      "Detalles reflejantes que destacan en cualquier entrenamiento nocturno.",
-    basePrice: 320,
-    hasReflective: true,
-    reflectiveExtra: REFLECTIVE_EXTRA,
-    images: {
-      default:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890074/gojo_nor_vlypie.jpg",
-      black:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890074/gojo_ref_bnqsxk.jpg",
-      white:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890074/gojo_front_qwx6ts.jpg",
-    },
-    variants: {
-      colors: ["black", "white", "green", "blue"],
-      cuts: ["S", "M", "L", "XL", "XXL"],
-    },
-  },
-  {
-    id: "beast-mode",
-    name: "Majin Boo",
-    description: "Ajuste performance con mezcla premium de algodón y elastano.",
+    id: "spartanBlack",
+    name: "Spartan Black",
+    description: "Corte atlético. Pensada para movimiento intenso.",
     basePrice: 320,
     hasReflective: false,
     reflectiveExtra: 0,
-    images: {
-      default:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890074/majin_nor_hzmlbh.jpg",
-      black:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890075/majin_ref_rcrn7h.jpg",
-      white:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890074/majin_front_oowobi.jpg",
-    },
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785079/Camisas/spartanBlack_front_xhyowv.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785079/Camisas/spartanBlack_back_cluyid.png",
+    ],
     variants: {
-      colors: ["black", "white", "green", "blue"],
+      colors: ["black"],
       cuts: ["S", "M", "L", "XL", "XXL"],
     },
+    tag: "",
   },
   {
-    id: "steel-athlete",
+    id: "spartanBeige",
+    name: "Spartan Beige",
+    description: "Corte atlético. Pensada para movimiento intenso.",
+    basePrice: 320,
+    hasReflective: false,
+    reflectiveExtra: 0,
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785079/Camisas/spartanBeige_front_glvdeh.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785076/Camisas/spartanBeige_back_zdjpno.png",
+    ],
+    variants: {
+      colors: ["beige"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
+    tag: "",
+  },
+  {
+    id: "baki",
+    name: "Baki",
+    description: "Corte atlético. Pensada para movimiento intenso.",
+    basePrice: 320,
+    hasReflective: false,
+    reflectiveExtra: 0,
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785064/Camisas/baki_back_jtvi9o.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785059/Camisas/baki_front_hhuysh.png",
+    ],
+    variants: {
+      colors: ["black"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
+    tag: "",
+  },
+  {
+    id: "goku",
     name: "Goku",
-    description: "Diseño minimalista con acabado metálico en logo frontal.",
+    description: "Corte atlético. Pensada para movimiento intenso.",
     basePrice: 320,
     hasReflective: true,
     reflectiveExtra: REFLECTIVE_EXTRA,
-    images: {
-      default:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890075/goku_nor_afdpsa.jpg",
-      black:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890075/goku_ref_l5qqdx.jpg",
-      white:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890074/goku_front_mar0zk.jpg",
-    },
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785062/Camisas/goku_back_mhjfmz.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785068/Camisas/goku_reflex_pnaaht.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785063/Camisas/goku_front_pzqfec.png",
+    ],
     variants: {
-      colors: ["black", "white", "green", "blue"],
+      colors: ["black"],
       cuts: ["S", "M", "L", "XL", "XXL"],
     },
+    tag: "",
   },
   {
-    id: "shadow-pump",
-    name: "Tji",
-    description: "Mangas cortadas estratégicamente, ideal para días de brazo.",
+    id: "vegeta",
+    name: "Vegeta",
+    description: "Corte atlético. Pensada para movimiento intenso.",
     basePrice: 320,
-    hasReflective: false,
-    reflectiveExtra: 0,
-    images: {
-      default:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890076/tojicol_nor_trgugp.jpg",
-      black:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890076/tojicol_ref_e8hvyr.jpg",
-      white:
-        "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776890075/tojicol_front_h3x26w.jpg",
-    },
+    hasReflective: true,
+    reflectiveExtra: REFLECTIVE_EXTRA,
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785088/Camisas/vegeta_back_ztfgi2.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785091/Camisas/vegeta_reflex_dwg8l2.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785089/Camisas/vegeta_front_jtp5zj.png",
+    ],
     variants: {
-      colors: ["black", "white", "green", "blue"],
+      colors: ["black"],
       cuts: ["S", "M", "L", "XL", "XXL"],
     },
-    tag: "Limitado",
+    tag: "",
+  },
+  {
+    id: "tojiFushiguro",
+    name: "Toji Fushiguro",
+    description: "Corte atlético. Pensada para movimiento intenso.",
+    basePrice: 320,
+    hasReflective: true,
+    reflectiveExtra: REFLECTIVE_EXTRA,
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785089/Camisas/tojiFushiguro_back_bqglzs.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785062/Camisas/17_eplvcf.png",
+    ],
+    variants: {
+      colors: ["black"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
+    tag: "",
+  },
+  {
+    id: "majinBuu",
+    name: "Majin Buu",
+    description: "Corte atlético. Pensada para movimiento intenso.",
+    basePrice: 320,
+    hasReflective: true,
+    reflectiveExtra: REFLECTIVE_EXTRA,
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785071/Camisas/majinBuu_back_argudx.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785069/Camisas/majinBuu_reflex_t0wjrf.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785071/Camisas/majinBuu_front_ptvxw2.png",
+    ],
+    variants: {
+      colors: ["black"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
+    tag: "",
+  },
+  {
+    id: "gojo",
+    name: "Gojo",
+    description: "Corte atlético. Pensada para movimiento intenso.",
+    basePrice: 320,
+    hasReflective: true,
+    reflectiveExtra: REFLECTIVE_EXTRA,
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785060/Camisas/gojo_back_ylfquq.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785066/Camisas/gojo_reflex_mo7ddu.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785063/Camisas/22_seodek.png",
+    ],
+    variants: {
+      colors: ["black"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
+    tag: "",
+  },
+  {
+    id: "tojiArms",
+    name: "Toji",
+    description: "Corte atlético. Pensada para movimiento intenso.",
+    basePrice: 320,
+    hasReflective: true,
+    reflectiveExtra: REFLECTIVE_EXTRA,
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785086/Camisas/tojiArms_back_gs30la.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785083/Camisas/tojiArms_reflex_md1wyx.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785063/Camisas/21_mtucjs.png",
+    ],
+    variants: {
+      colors: ["black"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
+    tag: "",
+  },
+  {
+    id: "nezuko",
+    name: "Nezuko",
+    description: "Corte atlético. Pensada para movimiento intenso.",
+    basePrice: 320,
+    hasReflective: true,
+    reflectiveExtra: REFLECTIVE_EXTRA,
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785072/Camisas/nezuko_back_iwyjnb.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785075/Camisas/nezuko_reflex_xadukh.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785073/Camisas/nezuko_front_eyej6s.png",
+    ],
+    variants: {
+      colors: ["black"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
+    tag: "",
+  },
+  {
+    id: "sukuna",
+    name: "Sukuna",
+    description: "Corte atlético. Pensada para movimiento intenso.",
+    basePrice: 320,
+    hasReflective: true,
+    reflectiveExtra: REFLECTIVE_EXTRA,
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785081/Camisas/sukuna_reflex_tlrgah.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785079/Camisas/sukuna_front_bxpt1h.png",
+    ],
+    variants: {
+      colors: ["black"],
+      cuts: ["S", "M", "L", "XL", "XXL"],
+    },
+    tag: "",
   },
 ];
 
@@ -184,7 +249,7 @@ export const COLOR_LABEL: Record<ProductColor, string> = {
   white: "Blanco",
   green: "Verde",
   blue: "Azul",
-  red: "Red",
+  beige: "Beige",
 };
 
 export const CUT_LABEL: Record<ProductCut, string> = {

@@ -1,29 +1,5 @@
 import { GALLERY_IMAGES } from "../data/constants";
 
-// ==========================================
-// SECCIÓN: Galería de Imágenes
-// ==========================================
-// ¿Qué hace este componente?
-// Muestra un muro de fotos (tipo Instagram) para lucir cómo se ven
-// las camisas en acción dentro del gimnasio.
-//
-// Lógica principal:
-// Lee una lista de imágenes (GALLERY_IMAGES) desde tu archivo de datos
-// y usa un ciclo (.map) para dibujar cada foto automáticamente.
-//
-// Estructura visual:
-// 1. Encabezado: Título y subtítulo sencillos alineados a la izquierda.
-// 2. Cuadrícula (Grid): En celulares acomoda 2 fotos por fila, pero en
-//    tablets o monitores acomoda 3 (md:grid-cols-3).
-// 3. El truco de la primera foto: Utiliza la condición (i === 0) para
-//    detectar cuál es la primera imagen de la lista. A esta foto le da
-//    instrucciones especiales para que ocupe el doble de espacio
-//    (md:col-span-2 md:row-span-2), haciéndola la protagonista.
-// 4. Efecto interactivo: Cada foto hace un "zoom" muy suave cuando le
-//    pasas el mouse por encima (group-hover:scale-110) y aparece una
-//    ligera sombra oscura desde abajo.
-// ==========================================
-
 export function Gallery() {
   return (
     <section className="py-20 sm:py-28 bg-ink-950">

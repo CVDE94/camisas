@@ -1,26 +1,6 @@
 import { Dumbbell, Instagram } from "lucide-react";
 import { BRAND, LOGO_IMAGE } from "../data/constants";
 
-// ==========================================
-// SECCIÓN: Pie de Página (Footer)
-// ==========================================
-// ¿Qué hace este componente?
-// Es la franja oscura que aparece hasta abajo de toda tu tienda.
-// Muestra el nombre de tu marca, un botón hacia tu Instagram y
-// la leyenda de derechos reservados.
-//
-// Estructura visual:
-// 1. Contenedor principal (footer): Tiene un fondo totalmente negro (bg-black),
-//    con una línea decorativa muy fina en la parte superior (border-t) y
-//    espacio vertical (py-10).
-// 2. Distribución (Flexbox): En celulares, el logo, el botón y el texto
-//    se apilan uno debajo del otro (flex-col). En monitores, se acomodan
-//    bonitos en una sola línea de izquierda a derecha (sm:flex-row).
-// 3. Lógica del año: Utiliza {new Date().getFullYear()} para leer el año
-//    actual de la computadora. Así, cuando cambie el año, tu página se
-//    actualizará sola sin que tengas que editar el código.
-// ==========================================
-
 export function Footer() {
   return (
     <footer className="bg-black border-t border-white/5 py-10">

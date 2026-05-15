@@ -10,7 +10,7 @@ import { About } from "./components/About";
 import { FinalCTA } from "./components/FinalCTA";
 import { Footer } from "./components/Footer";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
-import type { Product } from "./data/constants copy2";
+import type { Product } from "./data/constants";
 
 function App() {
   const [selected, setSelected] = useState<Product | null>(null);
