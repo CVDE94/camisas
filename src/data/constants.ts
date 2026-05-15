@@ -264,22 +264,37 @@ export const PROMO_OFFERS = [
   {
     id: 1,
     image:
-      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776436521/galery_00_cmklew.png",
-    title: "DROP DE TEMPORADA",
-    description:
-      "Aprovecha un 20% de descuento en todas las playeras oversize.",
-    badge: "OFERTA -20%",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778803862/Camisas/Offer01_fbcspt.png",
+    title: "PAQUETE JUJUTSU KAISEN",
+    description: "Selecciona cualquier prenda de la coleccion y llevate",
+    badge: "OFERTA 3 X $900",
     link: "#catalogo",
   },
   {
     id: 2,
     image:
-      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776436520/fondo_00_lklfya.png",
-    title: "PACK DE ENTRENAMIENTO",
-    description:
-      "Lleva 3 playeras técnicas por el precio de 2. Edición limitada.",
-    badge: "3x2 PROMO",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778803862/Camisas/Offer02_usilnc.png",
+    title: "PAQUETE JUJUTSU KAISEN",
+    description: "Selecciona cualquier prenda de la coleccion y llevate",
+    badge: "OFERTA 3 X $900",
     link: "#catalogo",
   },
-  // Puedes agregar cuantas ofertas quieras aquí...
+  {
+    id: 3,
+    image:
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778803862/Camisas/Offer03_tfbxvk.png",
+    title: "PAQUETE DRAGON BALL",
+    description: "Selecciona cualquier prenda de la coleccion y llevate",
+    badge: "OFERTA 3 X $900",
+    link: "#catalogo",
+  },
+  {
+    id: 4,
+    image:
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778803862/Camisas/Offer04_ovuznh.png",
+    title: "PAQUETE DRAGON BALL",
+    description: "Selecciona cualquier prenda de la coleccion y llevate",
+    badge: "OFERTA 3 X $900",
+    link: "#catalogo",
+  },
 ];
