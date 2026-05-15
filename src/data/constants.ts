@@ -271,27 +271,9 @@ export const PROMO_OFFERS = [
     link: "#catalogo",
   },
   {
-    id: 2,
-    image:
-      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778803862/Camisas/Offer02_usilnc.png",
-    title: "PAQUETE JUJUTSU KAISEN",
-    description: "Selecciona cualquier prenda de la coleccion y llevate",
-    badge: "OFERTA 3 X $900",
-    link: "#catalogo",
-  },
-  {
     id: 3,
     image:
       "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778803862/Camisas/Offer03_tfbxvk.png",
-    title: "PAQUETE DRAGON BALL",
-    description: "Selecciona cualquier prenda de la coleccion y llevate",
-    badge: "OFERTA 3 X $900",
-    link: "#catalogo",
-  },
-  {
-    id: 4,
-    image:
-      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778803862/Camisas/Offer04_ovuznh.png",
     title: "PAQUETE DRAGON BALL",
     description: "Selecciona cualquier prenda de la coleccion y llevate",
     badge: "OFERTA 3 X $900",
