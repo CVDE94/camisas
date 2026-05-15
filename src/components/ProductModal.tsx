@@ -68,8 +68,8 @@ export function ProductModal({ product, onClose }: Props) {
   const carouselImages = useMemo(() => {
     if (!product) return [];
     const images = new Set([
-      product.images[color] ?? product.images.default,
-      product.images.default,
+      product.images[0] ?? product.images[0],
+      product.images[0],
       ...Object.values(product.images),
     ]);
     return Array.from(images).filter(Boolean) as string[];
