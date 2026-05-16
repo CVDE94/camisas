@@ -1,5 +1,5 @@
-import { Dumbbell, Instagram } from "lucide-react";
-import { BRAND, LOGO_IMAGE } from "../data/constants";
+import { Instagram } from "lucide-react";
+import { BRAND, FOOTER_IMAGE } from "../data/constants";
 
 export function Footer() {
   return (
@@ -10,7 +10,7 @@ export function Footer() {
         {/* order-1 para que esté arriba en celular y a la izquierda en PC */}
         <div className="flex justify-center sm:justify-start order-1">
           <img
-            src={LOGO_IMAGE}
+            src={FOOTER_IMAGE}
             alt="Logo"
             className="w-14 h-14 sm:w-16 sm:h-16 object-contain object-center transition-transform duration-300 hover:scale-110"
           />

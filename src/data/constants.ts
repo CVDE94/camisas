@@ -166,7 +166,7 @@ export const PRODUCTS: Product[] = [
     images: [
       "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785060/Camisas/gojo_back_ylfquq.png",
       "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785066/Camisas/gojo_reflex_mo7ddu.png",
-      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785063/Camisas/22_seodek.png",
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785062/Camisas/17_eplvcf.png",
     ],
     variants: {
       colors: ["black"],
@@ -242,6 +242,9 @@ export const HERO_IMAGE =
   "https://res.cloudinary.com/dogmbd7ub/image/upload/v1777343880/42a5692e-a9e7-4438-a677-869682733a8d_z0j6vo.png";
 
 export const LOGO_IMAGE =
+  "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778891642/logo_Aa_im9cxw.svg";
+
+export const FOOTER_IMAGE =
   "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776957264/logo_wibgto.svg";
 
 export const COLOR_LABEL: Record<ProductColor, string> = {
