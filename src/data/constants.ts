@@ -19,8 +19,8 @@ export interface Product {
 export const BRAND = {
   name: "ASCNT",
   tagline: "Forjado para el esfuerzo",
-  whatsappNumber: "5213334665465",
-  instagramUrl: "https://instagram.com/",
+  whatsappNumber: "3310279057",
+  instagramUrl: "https://www.instagram.com/ascnt.collection",
   email: "hola@ironwear.mx",
   currency: "MXN",
 };
@@ -247,6 +247,9 @@ export const LOGO_IMAGE =
 export const FOOTER_IMAGE =
   "https://res.cloudinary.com/dogmbd7ub/image/upload/v1776957264/logo_wibgto.svg";
 
+export const TALLA =
+  "https://res.cloudinary.com/dogmbd7ub/image/upload/v1779687297/Camisas/Tallas_Individualesv4_yaghd5.png";
+
 export const COLOR_LABEL: Record<ProductColor, string> = {
   black: "Negro",
   white: "Blanco",
@@ -281,5 +284,33 @@ export const PROMO_OFFERS = [
     description: "Selecciona cualquier prenda de la coleccion y llevate",
     badge: "OFERTA 3 X $900",
     link: "#catalogo",
+  },
+];
+
+export const OFFERS = [
+  {
+    id: 1,
+    title: "PAQUETE JUJUTSU KAISEN",
+    description:
+      "Llevate 3 playeras de nuestra colección Jujutsu Kaisen por solo",
+    basePrice: 900,
+    discount: "Promo",
+    // Si tiene una sola imagen, puedes ponerla como string o como un arreglo de 1 elemento
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785072/Camisas/1_u7bc7w.png",
+    ],
+    link: "https://wa.me/tu_numero?text=Quiero%20el%20Pack%20Gym",
+  },
+  {
+    id: 2,
+    title: "PAQUETE DRAGON BALL",
+    description: "Llevate 3 playeras de nuestra colección Dragon Ball por solo",
+    basePrice: 900,
+    discount: "Promo",
+    // Al poner VARIAS imágenes, el modal mostrará las miniaturas automáticamente
+    images: [
+      "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785057/Camisas/3_isy151.png",
+    ],
+    link: "https://wa.me/tu_numero",
   },
 ];
