@@ -94,11 +94,11 @@ export function OfferModal({ offer, onClose }: OfferModalProps) {
             </div>
           )}
 
-          <h2 className="text-3xl font-bold mb-4 leading-tight">
+          <h2 className="text-3xl font-bold mb-4 leading-tight py-4">
             {offer.title}
           </h2>
 
-          <p className="text-zinc-400 mb-8 leading-relaxed">
+          <p className="text-zinc-400 mb-8 leading-relaxed py-2">
             {offer.description}
           </p>
           {/* Precio */}
