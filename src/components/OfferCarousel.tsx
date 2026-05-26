@@ -134,6 +134,7 @@ export function OfferCarousel() {
       {/* Este componente solo se mostrará si "selectedOffer" tiene información */}
       {selectedOffer && (
         <OfferModal
+          isOpen={selectedOffer !== null}
           offer={selectedOffer}
           onClose={() => setSelectedOffer(null)}
         />

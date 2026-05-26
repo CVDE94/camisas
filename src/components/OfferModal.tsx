@@ -1,86 +1,103 @@
-// src/components/OfferModal.tsx
 import { useState, useEffect } from "react";
 import {
   X,
+  MessageCircle,
   ShoppingBag,
   ChevronRight,
-  MessageCircle,
   Lock,
 } from "lucide-react";
 import { TALLA } from "../data/constants";
 
+// Puedes ajustar esta interfaz dependiendo de los datos exactos que envíes desde tu constants.ts
+
 interface OfferModalProps {
-  offer: any; // Recibe la información de la oferta seleccionada
+  isOpen: boolean;
   onClose: () => void;
+  offer: any;
 }
 
-export function OfferModal({ offer, onClose }: OfferModalProps) {
-  const [currentImage, setCurrentImage] = useState(0);
+export function OfferModal({ isOpen, onClose, offer }: OfferModalProps) {
+  // Manejo de la miniatura seleccionada si la oferta tiene varias imágenes
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // Truco maestro: Si en constants.ts tienes 'image' (1 foto) o 'images' (arreglo), esto lo unifica
   const images = Array.isArray(offer.images)
     ? offer.images
     : [offer.image || offer.imageUrl];
 
-  // Permite cerrar el Pop-up presionando la tecla Escape
+  // Efecto clave para evitar que el fondo (body) haga scroll cuando el modal está abierto
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
     };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, [onClose]);
+  }, [isOpen]);
 
-  if (!offer) return null;
+  // Si el modal está cerrado o no hay oferta cargada, no renderizamos nada
+  if (!isOpen || !offer) return null;
 
   return (
-    // Fondo oscuro con desenfoque (Glassmorphism)
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      {/* Contenedor Principal (Proporción 60/40 como en tus productos) */}
-      <div className="relative w-full max-w-5xl bg-zinc-900 rounded-[2rem] overflow-hidden flex flex-col md:flex-row shadow-2xl animate-fade-in">
-        {/* Botón Flotante para Cerrar */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-0 md:p-4">
+      {/* 1. Fondo Oscuro Principal */}
+
+      {/* 2. Contenedor del Modal (Aquí está la magia del Scroll para móviles) */}
+      <div
+        className="relative w-full max-w-5xl bg-zinc-900 flex flex-col md:flex-row 
+                      h-[100dvh] md:h-auto md:max-h-[90vh] 
+                      overflow-y-auto md:overflow-hidden 
+                      rounded-none md:rounded-3xl shadow-2xl"
+      >
+        {/* 3. Botón de Cerrar (Flotante y siempre visible en la esquina superior) */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 bg-zinc-800/80 hover:bg-zinc-700 text-white rounded-full transition-colors backdrop-blur-md"
+          className="absolute top-4 right-4 z-50 p-2 bg-black/40 hover:bg-black/80 backdrop-blur-md rounded-full text-white transition-all"
         >
-          <X className="w-5 h-5" />
+          <X className="w-6 h-6" />
         </button>
 
-        {/* COLUMNA IZQUIERDA: Imagen de la Oferta (60%) */}
-        <div className="w-full md:w-3/5 relative bg-black flex flex-col">
-          {/* Imagen Principal con Efecto Vignette (Difuminado en las orillas) */}
-          <div className="relative flex-1 min-h-[300px] md:min-h-[500px]">
-            <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-10" />
+        {/* COLUMNA IZQUIERDA: Imagen de la oferta (60% del ancho en escritorio) */}
+        <div className="w-full md:w-3/5 relative min-h-[40vh] md:min-h-0 bg-black flex flex-col justify-between">
+          {/* Contenedor de la Imagen Principal con efecto de difuminado */}
+          <div className="relative w-full flex-grow flex items-center justify-center overflow-hidden">
+            {/* Sombras difuminadas arriba y abajo */}
+            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none"></div>
 
             <img
-              src={images[currentImage]}
+              src={offer.images[currentIndex]}
               alt={offer.title}
-              className="w-full h-full object-cover object-center transition-all duration-500"
+              className="w-full h-full object-cover md:object-contain relative z-0"
             />
-
-            <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/80 to-transparent pointer-events-none z-10" />
           </div>
 
-          {/* Tira de Miniaturas (Solo aparece si la oferta tiene MÁS de 1 imagen) */}
+          {/* Tira de miniaturas (Se muestra SOLO si hay más de 1 imagen disponible) */}
           {images.length > 1 && (
-            <div className="flex gap-2 p-4 bg-zinc-950 overflow-x-auto">
-              {images.map((src: string, index: number) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImage(index)}
-                  className={`relative shrink-0 w-20 h-20 rounded-xl overflow-hidden transition-all duration-200 ${
-                    currentImage === index
-                      ? "bg-zinc-800 opacity-100 shadow-[inset_4px_0_0_0_#ffffff]" // Estilo Activo Premium
-                      : "opacity-50 hover:opacity-100 bg-black" // Estilo Inactivo
-                  }`}
-                >
-                  <img
-                    src={src}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
+            <div className="flex gap-4 p-4 overflow-x-auto bg-zinc-950 border-t border-zinc-800 shrink-0">
+              {images.map((src: string, index: number) => {
+                const isActive = currentIndex === index;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`relative shrink-0 w-20 h-20 transition-all duration-200 rounded-2xl overflow-hidden border-2 
+                      ${
+                        isActive
+                          ? "border-zinc-500 opacity-100 shadow-[inset_4px_0_0_0_#ffffff] bg-zinc-800"
+                          : "border-zinc-800 opacity-50 hover:opacity-100 bg-black"
+                      }`}
+                  >
+                    <img
+                      src={src}
+                      alt={`Miniatura ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>
