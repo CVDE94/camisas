@@ -299,7 +299,7 @@ export const OFFERS = [
     images: [
       "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785072/Camisas/1_u7bc7w.png",
     ],
-    link: "https://wa.me/tu_numero?text=Quiero%20el%20Pack%20Gym",
+    link: "https://wa.me/3310279057",
   },
   {
     id: 2,
@@ -311,6 +311,6 @@ export const OFFERS = [
     images: [
       "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785057/Camisas/3_isy151.png",
     ],
-    link: "https://wa.me/tu_numero",
+    link: "https://wa.me/3310279057",
   },
 ];
