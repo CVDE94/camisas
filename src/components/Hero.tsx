@@ -1,6 +1,7 @@
 import { ArrowDown, MessageCircle } from "lucide-react";
 import { BRAND, HERO_IMAGE } from "../data/constants";
 import { buildGeneralMessage, buildWhatsAppUrl } from "../lib/whatsapp";
+import { LogoOverlay } from "../components/LogoOverlay";
 
 export function Hero() {
   const whatsappUrl = buildWhatsAppUrl(buildGeneralMessage());
@@ -19,6 +20,10 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-ink-950/70 via-ink-950/60 to-ink-950" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink-950/80 via-transparent to-transparent" />
       </div>
+
+      {/* 2. AQUÍ MANDAS A LLAMAR EL LOGO */}
+      {/* Al ponerlo aquí, queda sobre la imagen pero debajo de los botones (por el z-index) */}
+      {/*<LogoOverlay className="absolute top-10 left-10 w-48 opacity-50 z-0 pointer-events-none" />*/}
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full pt-24 pb-16">
         <div className="max-w-2xl animate-slide-up">
@@ -71,7 +76,7 @@ export function Hero() {
           </div>
         </div>
       </div>
-
+      <LogoOverlay className="absolute bottom-32 right-48 w-40 h-auto opacity-80 z-10 hidden md:block" />
       <a
         href="#catalogo"
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-metal-300 text-xs uppercase tracking-[0.3em] flex flex-col items-center gap-2 animate-bounce"

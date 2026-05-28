@@ -1,11 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  X,
-  MessageCircle,
-  ShoppingBag,
-  ChevronRight,
-  Lock,
-} from "lucide-react";
+import { X, MessageCircle, Lock } from "lucide-react";
 import { TALLA } from "../data/constants";
 
 // Puedes ajustar esta interfaz dependiendo de los datos exactos que envíes desde tu constants.ts
