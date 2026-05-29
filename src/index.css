@@ -9,7 +9,7 @@ html {
 body {
   background-color: #050505;
   color: #f5f5f5;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -26,4 +26,39 @@ body {
 
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
+}
+/* En tu archivo index.css */
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+.logo-anim {
+  animation: appear 1.5s ease-out forwards;
+}
+
+/* src/index.css */
+@keyframes llenarA {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fadeUp {
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Clases genéricas para tus letras */
+.anim-letra {
+  opacity: 0.8;
+  transform: translateY(15px);
+  animation: fadeUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
 }

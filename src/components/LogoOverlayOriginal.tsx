@@ -1,11 +1,14 @@
-export const LogoOverlay = ({ className = "" }: { className?: string }) => {
+// src/components/LogoOverlay.tsx
+import "../index.css";
+
+export const LogoOverlay = ({ className }: { className?: string }) => {
   return (
     <svg
-      className={`pointer-events-none ${className}`}
-      version="1.1"
-      fill="none"
+      // Quita 'absolute', 'top-0', 'left-0', 'w-full', 'h-full' de aquí
+      // Deja que la clase que le pasas desde Hero controle eso.
+      className={`pointer-events-none logo-anim ${className}`}
       viewBox="0 0 297 248"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <image
@@ -57,58 +60,23 @@ export const LogoOverlay = ({ className = "" }: { className?: string }) => {
         strokeLinejoin="miter"
         mask="url(#Logo-Mask)"
       >
-        <path
-          id="Triangle"
-          d="M 55,179.5 147.5,39.5 242.5,180"
-          style={{
-            strokeDasharray: 400,
-            strokeDashoffset: 400,
-            animation: "llenarA 1s 0.6s forwards",
-          }}
-        />
-        <path
-          id="Main-A"
-          d="M 95,179.5 148,97 202,180 M 120,148.5 h55"
-          style={{
-            strokeDasharray: 400,
-            strokeDashoffset: -400,
-            animation: "llenarA 1s ease-in-out forwards",
-          }}
-        />
+        <path id="Triangle" d="M 55,179.5 147.5,39.5 242.5,180" />
+        <path id="Main-A" d="M 95,179.5 148,97 202,180 M 120,148.5 h55" />
       </g>
 
       <g id="text" fill="none" strokeOpacity="1" strokeWidth="8" stroke="white">
         <path
           id="A"
-          className="anim-letra"
-          style={{ animationDelay: "0.5s" }}
           d="M11.5,230 l22,-37.5 l21.5,37.5 M17,219 h30"
           mask="url(#A-Mask)"
         />
         <path
           id="S"
-          className="anim-letra"
-          style={{ animationDelay: "0.6s" }}
           d="M79,219 l7,3 a 3.8 5 280 1 0 11 -14.5 l-7,-3 a 3.8 5.5 285 1 1 11 -14.5 l4,2"
         />
-        <path
-          id="C"
-          className="anim-letra"
-          style={{ animationDelay: "0.7s" }}
-          d="M166,217 a 18 18 20 1 1 0 -22"
-        />
-        <path
-          id="N"
-          className="anim-letra"
-          style={{ animationDelay: "0.8s" }}
-          d="M195.5,227.5 v-35 l29.5,26.5 v-34.5 "
-        />
-        <path
-          id="T"
-          className="anim-letra"
-          style={{ animationDelay: "0.9s" }}
-          d="M253,188.5 h33 M269,184.5 v43 "
-        />
+        <path id="C" d="M166,217 a 18 18 20 1 1 0 -22" />
+        <path id="N" d="M195.5,227.5 v-35 l29.5,26.5 v-34.5 " />
+        <path id="T" d="M253,188.5 h33 M269,184.5 v43 " />
       </g>
     </svg>
   );

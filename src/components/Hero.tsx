@@ -1,10 +1,12 @@
 import { ArrowDown, MessageCircle } from "lucide-react";
-import { BRAND, HERO_IMAGE } from "../data/constants";
+import { BRAND, HERO_IMAGE, PRODUCTS } from "../data/constants";
 import { buildGeneralMessage, buildWhatsAppUrl } from "../lib/whatsapp";
 import { LogoOverlay } from "../components/LogoOverlay";
 
 export function Hero() {
   const whatsappUrl = buildWhatsAppUrl(buildGeneralMessage());
+
+  const totalDisenos = PRODUCTS.length.toString();
 
   return (
     <section
@@ -61,7 +63,7 @@ export function Hero() {
           <div className="mt-14 grid grid-cols-3 gap-4 sm:gap-8 max-w-lg">
             {[
               { n: "+2K", l: "Atletas activos" },
-              { n: "6", l: "Diseños únicos" },
+              { n: totalDisenos, l: "Diseños únicos" },
               { n: "24h", l: "Respuesta" },
             ].map((s) => (
               <div key={s.l} className="border-l border-white/10 pl-3 sm:pl-4">
@@ -76,7 +78,7 @@ export function Hero() {
           </div>
         </div>
       </div>
-      <LogoOverlay className="absolute bottom-32 right-48 w-40 h-auto opacity-80 z-10 hidden md:block" />
+      <LogoOverlay className="absolute bottom-[13rem] right-[22rem] w-[20rem] h-auto opacity-100 z-10 hidden md:block" />
       <a
         href="#catalogo"
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-metal-300 text-xs uppercase tracking-[0.3em] flex flex-col items-center gap-2 animate-bounce"
