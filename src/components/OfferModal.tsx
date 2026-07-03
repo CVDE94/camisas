@@ -31,6 +31,33 @@ export function OfferModal({ isOpen, onClose, offer }: OfferModalProps) {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    // Inyectamos el paso fantasma
+    window.history.pushState({ modal: "OfferModal" }, "");
+
+    const handleBackButton = () => {
+      onClose();
+    };
+
+    window.addEventListener("popstate", handleBackButton);
+
+    // Limpieza pura, sin forzar al navegador a retroceder de golpe
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
+  }, [onClose]);
+
+  const handleSafeClose = () => {
+    onClose(); // 1. Cierra el modal instantáneamente (UX perfecta)
+
+    // 2. Limpia el historial fantasma por detrás sin congelar la app
+    if (window.history.state?.modal === "ProductModal") {
+      setTimeout(() => {
+        window.history.back();
+      }, 50);
+    }
+  };
+
   // Si el modal está cerrado o no hay oferta cargada, no renderizamos nada
   if (!isOpen || !offer) return null;
 
@@ -47,7 +74,7 @@ export function OfferModal({ isOpen, onClose, offer }: OfferModalProps) {
       >
         {/* 3. Botón de Cerrar (Flotante y siempre visible en la esquina superior) */}
         <button
-          onClick={onClose}
+          onClick={handleSafeClose}
           className="absolute top-4 right-4 z-50 p-2 bg-black/40 hover:bg-black/80 backdrop-blur-md rounded-full text-white transition-all"
         >
           <X className="w-6 h-6" />

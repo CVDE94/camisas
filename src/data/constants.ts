@@ -238,8 +238,11 @@ export const GALLERY_IMAGES = [
   "https://images.pexels.com/photos/416778/pexels-photo-416778.jpeg?auto=compress&cs=tinysrgb&w=1200",
 ];
 
-export const HERO_IMAGE =
+export const HERO_IMAGE_DESKTOP =
   "https://res.cloudinary.com/dogmbd7ub/image/upload/v1777343880/42a5692e-a9e7-4438-a677-869682733a8d_z0j6vo.png";
+
+export const HERO_IMAGE_MOBILE =
+  "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778785055/Camisas/8_xhrmsb.png";
 
 export const LOGO_IMAGE =
   "https://res.cloudinary.com/dogmbd7ub/image/upload/v1778891642/logo_Aa_im9cxw.svg";

@@ -32,6 +32,33 @@ export function ProductModal({ product, onClose }: Props) {
   const [attention, setAttention] = useState(false);
 
   useEffect(() => {
+    // Inyectamos el paso fantasma
+    window.history.pushState({ modal: "ProductModal" }, "");
+
+    const handleBackButton = () => {
+      onClose();
+    };
+
+    window.addEventListener("popstate", handleBackButton);
+
+    // Limpieza pura, sin forzar al navegador a retroceder de golpe
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
+  }, [onClose]);
+
+  const handleSafeClose = () => {
+    onClose(); // 1. Cierra el modal instantáneamente (UX perfecta)
+
+    // 2. Limpia el historial fantasma por detrás sin congelar la app
+    if (window.history.state?.modal === "ProductModal") {
+      setTimeout(() => {
+        window.history.back();
+      }, 50);
+    }
+  };
+
+  useEffect(() => {
     if (product?.hasReflective) {
       setAttention(true);
       const timer = setTimeout(() => setAttention(false), 1500);
@@ -139,11 +166,8 @@ export function ProductModal({ product, onClose }: Props) {
           <div className="w-full md:w-1/2 p-6 sm:p-10 flex flex-col bg-[#0a0a0a] relative">
             {/* Botones Flotantes (Cerrar y Favorito) */}
             <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-2.5 z-20">
-              <button className="w-9 h-9 rounded-full bg-black/40 sm:bg-transparent border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/5 transition-all">
-                <Heart className="w-4 h-4" />
-              </button>
               <button
-                onClick={onClose}
+                onClick={handleSafeClose}
                 className="w-9 h-9 rounded-full bg-black/40 sm:bg-transparent border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/5 transition-all"
               >
                 <X className="w-4 h-4" />
